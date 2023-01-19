@@ -1,0 +1,20 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.1",
+	"Category": "Samples",
+	"Description": "",
+	"Plugins": [
+		{
+			"Name": "ICVFX",
+			"Enabled": true
+		},
+		{
+			"Name": "ConsoleVariables",
+			"Enabled": true
+		}
+	],
+	"TargetPlatforms": [
+		"Windows"
+	],
+	"EpicSampleNameHash": "3953886266"
+}
