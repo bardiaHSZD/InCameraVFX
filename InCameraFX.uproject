@@ -5,39 +5,16 @@
 	"Description": "",
 	"Plugins": [
 		{
+			"Name": "ICVFX",
+			"Enabled": true
+		},
+		{
 			"Name": "ConsoleVariables",
-			"Enabled": true
-		},
-		{
-<<<<<<< HEAD
-=======
-			"Name": "MultiUserClient",
-			"Enabled": true
-		},
-		{
->>>>>>> 5fa34720af90700d5b58909a43d434fc937ce5c7
-			"Name": "Switchboard",
-			"Enabled": true
-		},
-		{
-<<<<<<< HEAD
-=======
-			"Name": "nDisplay",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux"
-			]
-		},
-		{
->>>>>>> 5fa34720af90700d5b58909a43d434fc937ce5c7
-			"Name": "DisplayClusterLaunch",
 			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
-		"Windows",
-		"HoloLens"
+		"Windows"
 	],
 	"EpicSampleNameHash": "3953886266"
 }
