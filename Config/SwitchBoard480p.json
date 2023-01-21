@@ -1,0 +1,159 @@
+{
+    "project_name": "SwitchBoard480p",
+    "uproject": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject",
+    "engine_dir": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine",
+    "build_engine": false,
+    "maps_path": "",
+    "maps_filter": "*.umap",
+    "maps_plugin_filters": [],
+    "listener_exe": "SwitchboardListener",
+    "tracing_enabled": false,
+    "tracing_args": "log,cpu,gpu,frame,bookmark,concert,messaging",
+    "tracing_stat_events": true,
+    "osc_server_port": 6000,
+    "osc_client_port": 8000,
+    "p4_enabled": false,
+    "p4_sync_path": "",
+    "p4_engine_path": "",
+    "source_control_workspace": null,
+    "muserver_command_line_arguments": "",
+    "muserver_server_name": "SwitchBoard480p_MU_Server",
+    "muserver_endpoint": ":9030",
+    "multiuser_exe": "UnrealMultiUserServer",
+    "multiuserslate_exe": "UnrealMultiUserSlateServer",
+    "muserver_auto_launch": false,
+    "muserver_slate_mode": false,
+    "muserver_clean_history": false,
+    "muserver_auto_build": false,
+    "muserver_auto_endpoint": false,
+    "muserver_multicast_endpoint": "230.0.0.1:6666",
+    "muserver_auto_join": false,
+    "muserver_archive_dir": "",
+    "muserver_working_dir": "",
+    "current_level": "/Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios",
+    "devices": {
+        "KiPro": {
+            "settings": {
+                "is_recording_device": true
+            }
+        },
+        "LiveLinkFace": {
+            "settings": {
+                "is_recording_device": true
+            }
+        },
+        "Motive": {
+            "settings": {
+                "is_recording_device": true,
+                "motive_port": 1510
+            }
+        },
+        "Unreal": {
+            "settings": {
+                "is_recording_device": true,
+                "buffer_size": 1024,
+                "command_line_arguments": "",
+                "exec_cmds": [],
+                "dp_cvars": [],
+                "port": 2980,
+                "roles_filename": "VPRoles.ini",
+                "stage_session_id": 0,
+                "editor_exe": "UnrealEditor.exe",
+                "max_gpu_count": 1,
+                "priority_modifier": "Normal",
+                "auto_decline_package_recovery": false,
+                "udpmessaging_unicast_endpoint": ":0",
+                "udpmessaging_extra_static_endpoints": "",
+                "udpmessaging_multicast_endpoint": "230.0.0.1:6666",
+                "log_download_dir": "",
+                "reflect_visibility_to_game": true,
+                "rsync_port": 8730,
+                "listener_inactive_timeout": 5
+            },
+            "UEBARDIA": {
+                "address": "192.168.3.5",
+                "roles": [],
+                "autojoin_mu_server": true,
+                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios  Log=UEBARDIA.log -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"UEBARDIA\" -StageFriendlyName=\"UEBARDIA\" -ConcertReflectVisibility=1 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"",
+                "last_log_path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Saved\\Logs\\Switchboard\\UEBARDIA.log",
+                "last_trace_path": "",
+                "exclude_from_build": false
+            }
+        },
+        "nDisplay": {
+            "settings": {
+                "ndisplay_cfg_file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Content\\TheOrigin\\Content\\Stages\\NantStudios\\Config\\nDisplayConfig.uasset",
+                "use_all_available_cores": false,
+                "texture_streaming": true,
+                "render_api": "dx12",
+                "render_mode": "Mono",
+                "render_sync_policy": "Config",
+                "executable_filename": "UnrealEditor.exe",
+                "ndisplay_cmd_args": "",
+                "ndisplay_exec_cmds": [],
+                "ndisplay_dp_cvars": [],
+                "ndisplay_unattended": true,
+                "max_gpu_count": 2,
+                "priority_modifier": "Normal",
+                "populated_config_itemDatas": [
+                    {
+                        "name": "nDisplayConfig.uasset",
+                        "path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Content\\TheOrigin\\Content\\Stages\\NantStudios\\Config\\nDisplayConfig.uasset"
+                    }
+                ],
+                "minimize_before_launch": true,
+                "primary_device_name": "Node_0",
+                "logging": {
+                    "LogConcert": null,
+                    "LogDisplayClusterCluster": null,
+                    "LogDisplayClusterConfig": null,
+                    "LogDisplayClusterEngine": null,
+                    "LogDisplayClusterGame": null,
+                    "LogDisplayClusterNetwork": null,
+                    "LogDisplayClusterRender": null,
+                    "LogDisplayClusterRenderSync": null,
+                    "LogDisplayClusterViewport": null,
+                    "LogDisplayClusterMedia": null,
+                    "LogLiveLink": null,
+                    "LogRemoteControl": null
+                },
+                "udpmessaging_unicast_endpoint": ":0",
+                "udpmessaging_extra_static_endpoints": "",
+                "disable_ensures": true,
+                "disable_all_screen_messages": true,
+                "port": 2980,
+                "roles_filename": "VPRoles.ini",
+                "stage_session_id": 0
+            },
+            "Node_0": {
+                "address": "192.168.3.5",
+                "roles": [],
+                "autojoin_mu_server": true,
+                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" -game /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios -messaging -dc_cluster -nosplash -fixedseed -NoVerifyGC -noxrstereo -xrtrackingonly -RemoteControlIsHeadless   -StageFriendlyName=\"Node_0\"  -MaxGPUCount=2 -dc_cfg=\"C:\\Users\\bardi\\AppData\\Local\\Temp\\\\ndisplay\\919571484235253426521998B8D48F47.ndisplay\" -dx12 -dc_dev_mono   -dc_node=Node_0 Log=Node_0.log -ini:Engine:[/Script/Engine.Engine]:GameEngine=/Script/DisplayCluster.DisplayClusterGameEngine,[/Script/Engine.Engine]:GameViewportClientClassName=/Script/DisplayCluster.DisplayClusterViewportClient,[/Script/Engine.UserInterfaceSettings]:bAllowHighDPIInGameMode=True -ini:Game:[/Script/EngineSettings.GeneralProjectSettings]:bUseBorderlessWindow=True -unattended -handleensurepercent=0 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"  -ExecCmds=\"DisableAllScreenMessages\" -windowed -forceres WinX=0 WinY=0 ResX=852 ResY=480 -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"Node_0\" -CONCERTISHEADLESS -DPCVars=\"p.Chaos.Solver.Deterministic=1\" ",
+                "last_log_path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Saved\\Logs\\Switchboard\\Node_0.log",
+                "last_trace_path": "",
+                "exclude_from_build": false,
+                "ue_command_line": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" -game /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios -messaging -dc_cluster -nosplash -fixedseed -NoVerifyGC -noxrstereo -xrtrackingonly -RemoteControlIsHeadless   -StageFriendlyName=\"Node_0\"  -MaxGPUCount=2 -dc_cfg=\"C:\\Users\\bardi\\AppData\\Local\\Temp\\\\ndisplay\\919571484235253426521998B8D48F47.ndisplay\" -dx12 -dc_dev_mono   -dc_node=Node_0 Log=Node_0.log -ini:Engine:[/Script/Engine.Engine]:GameEngine=/Script/DisplayCluster.DisplayClusterGameEngine,[/Script/Engine.Engine]:GameViewportClientClassName=/Script/DisplayCluster.DisplayClusterViewportClient,[/Script/Engine.UserInterfaceSettings]:bAllowHighDPIInGameMode=True -ini:Game:[/Script/EngineSettings.GeneralProjectSettings]:bUseBorderlessWindow=True -unattended -handleensurepercent=0 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"  -ExecCmds=\"DisableAllScreenMessages\" -windowed -forceres WinX=0 WinY=0 ResX=852 ResY=480 -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"Node_0\" -CONCERTISHEADLESS -DPCVars=\"p.Chaos.Solver.Deterministic=1\" ",
+                "window_position": [
+                    0,
+                    0
+                ],
+                "window_resolution": [
+                    852,
+                    480
+                ],
+                "fullscreen": false
+            }
+        },
+        "Shogun": {
+            "settings": {
+                "is_recording_device": true
+            }
+        },
+        "SoundDevices": {
+            "settings": {
+                "is_recording_device": true
+            }
+        }
+    }
+}

@@ -27,7 +27,7 @@
 					{
 						"pitch": 0,
 						"yaw": 0,
-						"roll": -0
+						"roll": 0
 					}
 				},
 				"ICVFXCamera":
@@ -43,7 +43,7 @@
 					{
 						"pitch": 0,
 						"yaw": 0,
-						"roll": -0
+						"roll": 0
 					}
 				}
 			},
@@ -119,15 +119,15 @@
 			{
 				"Node_0":
 				{
-					"host": "127.0.0.1",
+					"host": "192.168.3.5",
 					"sound": false,
 					"fullScreen": false,
 					"window":
 					{
 						"x": 0,
 						"y": 0,
-						"w": 1920,
-						"h": 1080
+						"w": 852,
+						"h": 480
 					},
 					"postprocess":
 					{
@@ -155,8 +155,8 @@
 							{
 								"x": 0,
 								"y": 0,
-								"w": 1920,
-								"h": 1080
+								"w": 852,
+								"h": 480
 							},
 							"projectionPolicy":
 							{
