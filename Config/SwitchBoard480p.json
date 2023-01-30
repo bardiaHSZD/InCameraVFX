@@ -27,7 +27,7 @@
     "muserver_auto_build": false,
     "muserver_auto_endpoint": false,
     "muserver_multicast_endpoint": "230.0.0.1:6666",
-    "muserver_auto_join": false,
+    "muserver_auto_join": true,
     "muserver_archive_dir": "",
     "muserver_working_dir": "",
     "current_level": "/Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios",
@@ -74,8 +74,17 @@
                 "address": "192.168.3.5",
                 "roles": [],
                 "autojoin_mu_server": true,
-                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios  Log=UEBARDIA.log -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"UEBARDIA\" -StageFriendlyName=\"UEBARDIA\" -ConcertReflectVisibility=1 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"",
+                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios  Log=UEBARDIA.log -CONCERTRETRYAUTOCONNECTONERROR -CONCERTAUTOCONNECT -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"UEBARDIA\" -StageFriendlyName=\"UEBARDIA\" -ConcertReflectVisibility=1 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"",
                 "last_log_path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Saved\\Logs\\Switchboard\\UEBARDIA.log",
+                "last_trace_path": "",
+                "exclude_from_build": false
+            },
+            "UE5": {
+                "address": "BardiaWPC",
+                "roles": [],
+                "autojoin_mu_server": true,
+                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios  Log=UE5.log -CONCERTRETRYAUTOCONNECTONERROR -CONCERTAUTOCONNECT -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"UE5\" -StageFriendlyName=\"UE5\" -ConcertReflectVisibility=1 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"BardiaWPC:0\"",
+                "last_log_path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Saved\\Logs\\Switchboard\\UE5.log",
                 "last_trace_path": "",
                 "exclude_from_build": false
             }
@@ -124,25 +133,6 @@
                 "port": 2980,
                 "roles_filename": "VPRoles.ini",
                 "stage_session_id": 0
-            },
-            "Node_0": {
-                "address": "192.168.3.5",
-                "roles": [],
-                "autojoin_mu_server": true,
-                "last_launch_command": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" -game /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios -messaging -dc_cluster -nosplash -fixedseed -NoVerifyGC -noxrstereo -xrtrackingonly -RemoteControlIsHeadless   -StageFriendlyName=\"Node_0\"  -MaxGPUCount=2 -dc_cfg=\"C:\\Users\\bardi\\AppData\\Local\\Temp\\\\ndisplay\\919571484235253426521998B8D48F47.ndisplay\" -dx12 -dc_dev_mono   -dc_node=Node_0 Log=Node_0.log -ini:Engine:[/Script/Engine.Engine]:GameEngine=/Script/DisplayCluster.DisplayClusterGameEngine,[/Script/Engine.Engine]:GameViewportClientClassName=/Script/DisplayCluster.DisplayClusterViewportClient,[/Script/Engine.UserInterfaceSettings]:bAllowHighDPIInGameMode=True -ini:Game:[/Script/EngineSettings.GeneralProjectSettings]:bUseBorderlessWindow=True -unattended -handleensurepercent=0 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"  -ExecCmds=\"DisableAllScreenMessages\" -windowed -forceres WinX=0 WinY=0 ResX=852 ResY=480 -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"Node_0\" -CONCERTISHEADLESS -DPCVars=\"p.Chaos.Solver.Deterministic=1\" ",
-                "last_log_path": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Saved\\Logs\\Switchboard\\Node_0.log",
-                "last_trace_path": "",
-                "exclude_from_build": false,
-                "ue_command_line": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe \"C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\InCameraFX.uproject\" -game /Game/TheOrigin/Content/StageLevels/NantStudios/SpaceJunkyard_NantStudios -messaging -dc_cluster -nosplash -fixedseed -NoVerifyGC -noxrstereo -xrtrackingonly -RemoteControlIsHeadless   -StageFriendlyName=\"Node_0\"  -MaxGPUCount=2 -dc_cfg=\"C:\\Users\\bardi\\AppData\\Local\\Temp\\\\ndisplay\\919571484235253426521998B8D48F47.ndisplay\" -dx12 -dc_dev_mono   -dc_node=Node_0 Log=Node_0.log -ini:Engine:[/Script/Engine.Engine]:GameEngine=/Script/DisplayCluster.DisplayClusterGameEngine,[/Script/Engine.Engine]:GameViewportClientClassName=/Script/DisplayCluster.DisplayClusterViewportClient,[/Script/Engine.UserInterfaceSettings]:bAllowHighDPIInGameMode=True -ini:Game:[/Script/EngineSettings.GeneralProjectSettings]:bUseBorderlessWindow=True -unattended -handleensurepercent=0 -UDPMESSAGING_TRANSPORT_MULTICAST=\"230.0.0.1:6666\" -UDPMESSAGING_TRANSPORT_UNICAST=\"192.168.3.5:0\"  -ExecCmds=\"DisableAllScreenMessages\" -windowed -forceres WinX=0 WinY=0 ResX=852 ResY=480 -CONCERTSERVER=\"SwitchBoard480p_MU_Server\" -CONCERTSESSION=\"MU_Session\" -CONCERTDISPLAYNAME=\"Node_0\" -CONCERTISHEADLESS -DPCVars=\"p.Chaos.Solver.Deterministic=1\" ",
-                "window_position": [
-                    0,
-                    0
-                ],
-                "window_resolution": [
-                    852,
-                    480
-                ],
-                "fullscreen": false
             }
         },
         "Shogun": {

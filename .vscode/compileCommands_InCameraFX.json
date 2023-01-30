@@ -1,0 +1,42 @@
+[
+	{
+		"file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Source\\InCameraFX\\DN_BeamActor.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\.vscode\\compileCommands_InCameraFX\\InCameraFX.370.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Source\\InCameraFX\\DN_BeamActor.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\.vscode\\compileCommands_InCameraFX\\InCameraFX.370.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Source\\InCameraFX\\InCameraFX.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\.vscode\\compileCommands_InCameraFX\\InCameraFX.370.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Source\\InCameraFX\\InCameraFX.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\.vscode\\compileCommands_InCameraFX\\InCameraFX.370.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\Source\\InCameraFX\\InCameraFX.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.33.31629\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\bardi\\OneDrive\\Documents\\Github\\InCameraVFX\\.vscode\\compileCommands_InCameraFX\\InCameraFX.370.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	}
+]

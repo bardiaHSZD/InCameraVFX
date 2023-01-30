@@ -3,6 +3,16 @@
 	"EngineAssociation": "5.1",
 	"Category": "Samples",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "InCameraFX",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ICVFX",
@@ -14,7 +24,8 @@
 		}
 	],
 	"TargetPlatforms": [
-		"Windows"
+		"Windows",
+		"HoloLens"
 	],
 	"EpicSampleNameHash": "3953886266"
 }
