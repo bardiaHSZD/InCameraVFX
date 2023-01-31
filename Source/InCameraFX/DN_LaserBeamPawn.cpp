@@ -8,7 +8,7 @@
 ADN_LaserBeamPawn::ADN_LaserBeamPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	//AutoPossessPlayer = EAutoReceiveInput::Player0;
 
@@ -38,13 +38,14 @@ void ADN_LaserBeamPawn::BeginPlay()
 	
 }
 
-// Called every frame
-void ADN_LaserBeamPawn::Tick(float DeltaTime)
+void ADN_LaserBeamPawn::LogBeforeAttach() const
 {
-	Super::Tick(DeltaTime);
-
-
 }
+
+void ADN_LaserBeamPawn::LogAfterAttach() const
+{
+}
+
 
 // Called to bind functionality to input
 void ADN_LaserBeamPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -53,20 +54,24 @@ void ADN_LaserBeamPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 }
 
+void ADN_LaserBeamPawn::AttachEndTo(const FVector& Position)
+{
+	LogBeforeAttach();
+	UpdateSplineBeam(Position);
+	UpdateSplineBeamMesh();
+	LogAfterAttach();
+}
+
 void ADN_LaserBeamPawn::AttachEndPoint()
 {	
-	const FVector& SplineInLocation = SplineEndPoint;
-	UpdateSplineBeam(SplineInLocation);
-	UpdateSplineBeamMesh();
+	AttachEndTo(SplineEndPoint);
 }
 
 void ADN_LaserBeamPawn::AttachEndMesh()
 {
 	if (SplineEndMesh != nullptr)
-	{
-		const FVector& SplineInLocation = SplineEndMesh->GetActorLocation();
-		UpdateSplineBeam(SplineInLocation);
-		UpdateSplineBeamMesh();
+	{ 
+		AttachEndTo(SplineEndMesh->GetActorLocation());
 	}
 }
 
@@ -74,7 +79,7 @@ void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)
 {
 	int32 StartSplinePointIndex = 0;
 	int32 EndSplinePointIndex = 1;
-	ESplineCoordinateSpace::Type SplineCoordinateSpace = ESplineCoordinateSpace::World;
+	ESplineCoordinateSpace::Type SplineCoordinateSpace = ESplineCoordinateSpace::Local;
 	const FVector& SplineInLocation = SplineInLocationTarget;
 	bool SplineUpdateSpline = true;
 	SplineComponentBeam->SetLocationAtSplinePoint(EndSplinePointIndex, SplineInLocation,
@@ -87,9 +92,9 @@ void ADN_LaserBeamPawn::UpdateSplineBeamMesh()
 	int32 EndSplinePointIndex = 1;
 	ESplineCoordinateSpace::Type SplineMeshCoordinateSpace = ESplineCoordinateSpace::Local;
 	FVector SplineMeshStartPos = SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
-	FVector SplineStartTangent = SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
+	FVector SplineStartTangent = FVector(0.0f,0.0f,0.0f);//SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
 	FVector SplineEndPos = SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
-	FVector SplineEndTangent = SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
+	FVector SplineEndTangent = FVector(0.0f, 0.0f, 0.0f);//SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
 	SplineMeshComponentBeam->SetStartAndEnd(SplineMeshStartPos, SplineStartTangent, SplineEndPos, SplineEndTangent);
 }
 

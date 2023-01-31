@@ -23,19 +23,19 @@ public:
 	// Sets default values for this pawn's properties
 	ADN_LaserBeamPawn();
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		USceneComponent* DefaultSceneRoot;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		UStaticMeshComponent* StartPointMesh;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		USplineComponent* SplineComponentBeam;
 	
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		USplineMeshComponent* SplineMeshComponentBeam;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		UArrowComponent* ArrowComponentBeam;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
@@ -43,6 +43,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		AActor* SplineEndMesh;
+
+	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
+		void AttachEndTo(const FVector& position);
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndPoint();
@@ -58,9 +61,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void LogBeforeAttach() const;
+	void LogAfterAttach() const;
+
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
