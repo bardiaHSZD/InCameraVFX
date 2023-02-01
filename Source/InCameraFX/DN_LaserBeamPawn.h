@@ -63,6 +63,7 @@ protected:
 
 	void LogBeforeAttach() const;
 	void LogAfterAttach() const;
+	void LogReport(FString FState) const;
 
 public:	
 

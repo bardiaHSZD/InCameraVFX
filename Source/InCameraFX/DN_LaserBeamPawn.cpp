@@ -40,10 +40,21 @@ void ADN_LaserBeamPawn::BeginPlay()
 
 void ADN_LaserBeamPawn::LogBeforeAttach() const
 {
+	LogReport("Before Attach: ");
 }
 
 void ADN_LaserBeamPawn::LogAfterAttach() const
 {
+	LogReport("After Attach: ");
+}
+
+void ADN_LaserBeamPawn::LogReport(FString FState) const
+{
+	int32 SplineLastIndex = 1;
+	ESplineCoordinateSpace::Type SplineMeshCoordinateSpace = ESplineCoordinateSpace::Local;
+	FVector SplineEndLocation = SplineComponentBeam->GetLocationAtSplinePoint(SplineLastIndex, SplineMeshCoordinateSpace);
+	FString StringSplineEndLocation = *SplineEndLocation.ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s Location of Ending Point is %s"), *FState, *StringSplineEndLocation);
 }
 
 
@@ -79,7 +90,7 @@ void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)
 {
 	int32 StartSplinePointIndex = 0;
 	int32 EndSplinePointIndex = 1;
-	ESplineCoordinateSpace::Type SplineCoordinateSpace = ESplineCoordinateSpace::Local;
+	ESplineCoordinateSpace::Type SplineCoordinateSpace = ESplineCoordinateSpace::World;
 	const FVector& SplineInLocation = SplineInLocationTarget;
 	bool SplineUpdateSpline = true;
 	SplineComponentBeam->SetLocationAtSplinePoint(EndSplinePointIndex, SplineInLocation,
@@ -92,9 +103,9 @@ void ADN_LaserBeamPawn::UpdateSplineBeamMesh()
 	int32 EndSplinePointIndex = 1;
 	ESplineCoordinateSpace::Type SplineMeshCoordinateSpace = ESplineCoordinateSpace::Local;
 	FVector SplineMeshStartPos = SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
-	FVector SplineStartTangent = FVector(0.0f,0.0f,0.0f);//SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
+	FVector SplineStartTangent = SplineComponentBeam->GetLocationAtSplinePoint(StartSplinePointIndex, SplineMeshCoordinateSpace);
 	FVector SplineEndPos = SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
-	FVector SplineEndTangent = FVector(0.0f, 0.0f, 0.0f);//SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
+	FVector SplineEndTangent = SplineComponentBeam->GetLocationAtSplinePoint(EndSplinePointIndex, SplineMeshCoordinateSpace);
 	SplineMeshComponentBeam->SetStartAndEnd(SplineMeshStartPos, SplineStartTangent, SplineEndPos, SplineEndTangent);
 }
 
