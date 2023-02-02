@@ -17,15 +17,14 @@ ADN_LaserBeamPawn::ADN_LaserBeamPawn()
 	SplineComponentBeam = CreateAbstractDefaultSubobject<USplineComponent>(TEXT("Spline"));
 	SplineMeshComponentBeam = CreateAbstractDefaultSubobject<USplineMeshComponent>(TEXT("SplineMesh"));
 	ArrowComponentBeam = CreateAbstractDefaultSubobject<UArrowComponent>(TEXT("ArrowDirection"));
-
-
+	EndPointMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("EndingPointMesh"));
 
 	// Attaching all of the components defined above to the root component, i.e. "RootComponent".
 	StartPointMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	SplineComponentBeam->AttachToComponent(StartPointMesh, FAttachmentTransformRules::KeepRelativeTransform);
+	SplineComponentBeam->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	SplineMeshComponentBeam->AttachToComponent(SplineComponentBeam, FAttachmentTransformRules::KeepRelativeTransform);
 	ArrowComponentBeam->AttachToComponent(StartPointMesh, FAttachmentTransformRules::KeepRelativeTransform);
-
+	EndPointMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
 
 }
@@ -84,6 +83,14 @@ void ADN_LaserBeamPawn::AttachEndMesh()
 	{ 
 		AttachEndTo(SplineEndMesh->GetActorLocation());
 	}
+}
+
+void ADN_LaserBeamPawn::SetStartRadius()
+{
+}
+
+void ADN_LaserBeamPawn::SetEndRadius()
+{
 }
 
 void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)

@@ -30,6 +30,9 @@ public:
 		UStaticMeshComponent* StartPointMesh;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		UStaticMeshComponent* EndPointMesh;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		USplineComponent* SplineComponentBeam;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -43,6 +46,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		AActor* SplineEndMesh;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float StartRadius = 1.0f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float EndRadius = 1.0f;
 
 	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
 		void AttachEndTo(const FVector& position);
@@ -53,6 +62,12 @@ public:
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndMesh();
 	
+	UFUNCTION(CallInEditor, Category = "Remote Sensing")
+		void SetStartRadius();
+
+	UFUNCTION(CallInEditor, Category = "Remote Sensing")
+		void SetEndRadius();
+
 	void UpdateSplineBeam(const FVector& SplineEndPoint);
 	void UpdateSplineBeamMesh();
 
