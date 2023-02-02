@@ -33,6 +33,9 @@ public:
 		UStaticMeshComponent* EndPointMesh;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+		UStaticMeshComponent* LocatorMesh;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		USplineComponent* SplineComponentBeam;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -53,6 +56,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		float EndRadius = 1.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float BeamRadius = 1.0f;
+
 	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
 		void AttachEndTo(const FVector& position);
 
@@ -67,10 +73,12 @@ public:
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void SetEndRadius();
+	
+	UFUNCTION(CallInEditor, Category = "Remote Sensing")
+		void SetBeamRadius();
 
 	void UpdateSplineBeam(const FVector& SplineEndPoint);
 	void UpdateSplineBeamMesh();
-
 
 protected:
 	// Called when the game starts or when spawned

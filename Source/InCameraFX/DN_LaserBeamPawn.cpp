@@ -12,7 +12,8 @@ ADN_LaserBeamPawn::ADN_LaserBeamPawn()
 
 	//AutoPossessPlayer = EAutoReceiveInput::Player0;
 
-	RootComponent = CreateAbstractDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+	RootComponent = CreateAbstractDefaultSubobject<USceneComponent>(TEXT("Root"));
+	LocatorMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("Locator"));
 	StartPointMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("StartingPointMesh"));
 	SplineComponentBeam = CreateAbstractDefaultSubobject<USplineComponent>(TEXT("Spline"));
 	SplineMeshComponentBeam = CreateAbstractDefaultSubobject<USplineMeshComponent>(TEXT("SplineMesh"));
@@ -20,11 +21,12 @@ ADN_LaserBeamPawn::ADN_LaserBeamPawn()
 	EndPointMesh = CreateAbstractDefaultSubobject<UStaticMeshComponent>(TEXT("EndingPointMesh"));
 
 	// Attaching all of the components defined above to the root component, i.e. "RootComponent".
-	StartPointMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	SplineComponentBeam->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	LocatorMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	StartPointMesh->AttachToComponent(LocatorMesh, FAttachmentTransformRules::KeepRelativeTransform);
+	SplineComponentBeam->AttachToComponent(LocatorMesh, FAttachmentTransformRules::KeepRelativeTransform);
 	SplineMeshComponentBeam->AttachToComponent(SplineComponentBeam, FAttachmentTransformRules::KeepRelativeTransform);
-	ArrowComponentBeam->AttachToComponent(StartPointMesh, FAttachmentTransformRules::KeepRelativeTransform);
-	EndPointMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ArrowComponentBeam->AttachToComponent(LocatorMesh, FAttachmentTransformRules::KeepRelativeTransform);
+	EndPointMesh->AttachToComponent(LocatorMesh, FAttachmentTransformRules::KeepRelativeTransform);
 
 
 }
@@ -75,6 +77,7 @@ void ADN_LaserBeamPawn::AttachEndTo(const FVector& Position)
 void ADN_LaserBeamPawn::AttachEndPoint()
 {	
 	AttachEndTo(SplineEndPoint);
+	EndPointMesh->SetWorldLocation(SplineEndPoint);
 }
 
 void ADN_LaserBeamPawn::AttachEndMesh()
@@ -82,15 +85,23 @@ void ADN_LaserBeamPawn::AttachEndMesh()
 	if (SplineEndMesh != nullptr)
 	{ 
 		AttachEndTo(SplineEndMesh->GetActorLocation());
+		EndPointMesh->SetWorldLocation(SplineEndMesh->GetActorLocation());
 	}
 }
 
 void ADN_LaserBeamPawn::SetStartRadius()
 {
+	StartPointMesh->SetRelativeScale3D(StartRadius * FVector(1.0f,1.0f,1.0f));
 }
 
 void ADN_LaserBeamPawn::SetEndRadius()
 {
+	EndPointMesh->SetRelativeScale3D(EndRadius * FVector(1.0f, 1.0f, 1.0f));
+}
+
+void ADN_LaserBeamPawn::SetBeamRadius()
+{
+	SplineComponentBeam->SetRelativeScale3D(FVector(1.0f, BeamRadius, BeamRadius));
 }
 
 void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)
