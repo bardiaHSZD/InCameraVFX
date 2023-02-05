@@ -5,9 +5,15 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/FloatingPawnMovement.h"
+#include "Engine/World.h"
+#include "DrawDebugHelpers.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/ArrowComponent.h"
 #include "Components/SplineComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 #include "Components/SplineMeshComponent.h"
 //#include "CustomGameMode.h"
 
@@ -43,6 +49,16 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 		UArrowComponent* ArrowComponentBeam;
+
+	// Avoids the camera attached to the character to stay behind a wall or any object
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+		USpringArmComponent* SpringArmComponent;
+
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+		UCameraComponent* CameraComponent;
+	
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+		UFloatingPawnMovement* MovementComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		FVector SplineEndPoint = FVector(0.0f,0.0f,0.0f);
@@ -88,7 +104,14 @@ protected:
 	void LogAfterAttach() const;
 	void LogReport(FString FState) const;
 
+	void MoveForward(float Value);
+	void MoveRight(float Value);
+	void AddRayCast();
+
 public:	
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

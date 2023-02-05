@@ -74,3 +74,6 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 Content/TheOrigin/Content/*/**
 Content/VRContentExamples/*/**/
+Content/SCK_Casual01/*
+Content/VRSpectator/*
+Content/VRTemplate/*
