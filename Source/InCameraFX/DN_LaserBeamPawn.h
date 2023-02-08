@@ -29,36 +29,54 @@ public:
 	// Sets default values for this pawn's properties
 	ADN_LaserBeamPawn();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		USceneComponent* DefaultSceneRoot;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		UStaticMeshComponent* StartPointMesh;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		UStaticMeshComponent* EndPointMesh;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		UStaticMeshComponent* LocatorMesh;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		USplineComponent* SplineComponentBeam;
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		USplineMeshComponent* SplineMeshComponentBeam;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Remote Sensing")
 		UArrowComponent* ArrowComponentBeam;
 
 	// Avoids the camera attached to the character to stay behind a wall or any object
-	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		USpringArmComponent* SpringArmComponent;
 
-	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		UCameraComponent* CameraComponent;
 	
-	UPROPERTY(visibleAnywhere, BlueprintReadWrite)
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		UFloatingPawnMovement* MovementComponent;
+
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float BaseTurnRate = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		bool DrawTraceLine = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		bool DisplayTraceLineMessage = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		bool LiveRayCast = false;
+
+	UPROPERTY(visibleAnywhere)
+		AActor* RayCastHitResult;
+	
+	UPROPERTY(visibleAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float BaseLookUpRate = 1.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
 		FVector SplineEndPoint = FVector(0.0f,0.0f,0.0f);
@@ -99,14 +117,23 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 	void LogBeforeAttach() const;
 	void LogAfterAttach() const;
 	void LogReport(FString FState) const;
-
-	void MoveForward(float Value);
-	void MoveRight(float Value);
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void LookUp(float AxisValue);
+	void TurnRight(float AxisValue);
+	void LookUpRate(float AxisValue);
+	void TurnRightRate(float AxisValue);
 	void AddRayCast();
+
+	float StartLineTraceMultiplier = 500.0f;
+	float EndLineTraceMultiplier = 1000.0f;
+	AActor* LastRayCastHitResult = nullptr;
+
+
+
 
 public:	
 

@@ -417,6 +417,12 @@
       "url": "https://raw.githubusercontent.com/freifunk/api.freifunk.net/master/specs/0.1.json"
     },
     {
+      "name": "Frogbot Config",
+      "description": "The Frogbot configuration required to scan Git repositories",
+      "fileMatch": ["frogbot-config.yml"],
+      "url": "https://raw.githubusercontent.com/jfrog/frogbot/master/schema/frogbot-schema.json"
+    },
+    {
       "name": ".asmdef",
       "description": "Unity 3D assembly definition file",
       "fileMatch": ["*.asmdef"],
@@ -737,15 +743,6 @@
       "description": "Schema for dbt project configurations",
       "fileMatch": ["dbt_project.yml"],
       "url": "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_project.json"
-    },
-    {
-      "name": "Deadpendency Config Schema",
-      "description": "Schema for Deadpendency config, a dependency management GitHub app",
-      "fileMatch": [
-        "**/.github/deadpendency.yaml",
-        "**/.deadpendency/config.yaml"
-      ],
-      "url": "https://json.schemastore.org/deadpendency.json"
     },
     {
       "name": "Dein Config Schema",
@@ -1812,6 +1809,12 @@
       "url": "https://json.schemastore.org/ide.host.json"
     },
     {
+      "name": "ifstate.conf",
+      "description": "Schema for IfState configuration file",
+      "fileMatch": ["**/ifstate/config.yml"],
+      "url": "https://ifstate.net/schema/ifstate.conf.schema.json"
+    },
+    {
       "name": "imageoptimizer.json",
       "description": "Schema for imageoptimizer.json files",
       "fileMatch": ["imageoptimizer.json"],
@@ -2060,6 +2063,12 @@
       "url": "https://w3id.org/linkml/meta.schema.json"
     },
     {
+      "name": "Lively Properties",
+      "description": "Lively Wallpaper configuration file. More info at https://github.com/rocksdanister/lively/wiki/Web-Guide-IV-:-Interaction#lively-properties",
+      "fileMatch": ["LivelyProperties.json"],
+      "url": "https://raw.githubusercontent.com/rocksdanister/lively/core-separation/schemas/livelyPropertiesSchema.json"
+    },
+    {
       "name": "local.settings.json",
       "description": "JSON schema for Azure Functions local.settings.json files",
       "fileMatch": ["local.settings.json"],
@@ -2103,14 +2112,18 @@
     {
       "name": "Meltano project definition",
       "description": "JSON schema for Meltano project definition files",
-      "fileMatch": ["*meltano.yml"],
-      "url": "https://raw.githubusercontent.com/meltano/meltano/main/schema/meltano.schema.json"
+      "fileMatch": [
+        "*meltano.yml",
+        "meltano-manifest.json",
+        "meltano-manifest.*.json"
+      ],
+      "url": "https://raw.githubusercontent.com/meltano/meltano/main/src/meltano/schemas/meltano.schema.json"
     },
     {
       "name": "Meltano plugin discovery definition",
       "description": "JSON schema for Meltano plugin discovery definition file",
       "fileMatch": ["*discovery.yml"],
-      "url": "https://raw.githubusercontent.com/meltano/meltano/main/schema/discovery.schema.json"
+      "url": "https://raw.githubusercontent.com/meltano/meltano/main/src/meltano/schemas/discovery.schema.json"
     },
     {
       "name": "Microsoft Band Web Tile",
@@ -2200,6 +2213,12 @@
       "description": "Configuration file defining what sounds play when sound event is triggered for a resourcepack for Minecraft.",
       "fileMatch": ["**/assets/*/sounds.json"],
       "url": "https://raw.githubusercontent.com/AxoCode/json-schema/master/minecraft/sounds.json"
+    },
+    {
+      "name": "MkDocs Configuration 1.0",
+      "description": "JSON schema for MkDocs configuration file",
+      "fileMatch": ["mkdocs.yml"],
+      "url": "https://json.schemastore.org/mkdocs-1.0.json"
     },
     {
       "name": ".mocharc",
@@ -4510,6 +4529,12 @@
       "versions": {
         "2.14.0": "https://json.schemastore.org/pantsbuild-2.14.0.json"
       }
+    },
+    {
+      "description": "The configuration file used by the All Contributors CLI and GitHub bot.",
+      "fileMatch": [".all-contributorsrc"],
+      "name": "All Contributors configuration file",
+      "url": "https://json.schemastore.org/all-contributors.json"
     }
   ],
   "version": 1

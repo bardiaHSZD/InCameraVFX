@@ -34,12 +34,6 @@ ADN_LaserBeamPawn::ADN_LaserBeamPawn()
 	EndPointMesh->AttachToComponent(LocatorMesh, FAttachmentTransformRules::KeepRelativeTransform);
 	SpringArmComponent->SetupAttachment(RootComponent);
 	CameraComponent->SetupAttachment(SpringArmComponent);
-	
-	
-
-
-
-	
 
 	SpringArmComponent->bUsePawnControlRotation = true;
 	bUseControllerRotationYaw = false;
@@ -72,7 +66,7 @@ void ADN_LaserBeamPawn::LogReport(FString FState) const
 	UE_LOG(LogTemp, Warning, TEXT("%s Location of Ending Point is %s"), *FState, *StringSplineEndLocation);
 }
 
-void ADN_LaserBeamPawn::MoveForward(float Value)
+void ADN_LaserBeamPawn::MoveForward(float AxisValue)
 {
 	FRotator ControlRot = GetControlRotation();
 	ControlRot.Pitch = 0.f;
@@ -82,10 +76,10 @@ void ADN_LaserBeamPawn::MoveForward(float Value)
     // To change the orientation towards the camera direction:
 	
 	
-	AddMovementInput(ControlRot.Vector(), Value);
+	AddMovementInput(ControlRot.Vector(), AxisValue);
 }
 
-void ADN_LaserBeamPawn::MoveRight(float Value)
+void ADN_LaserBeamPawn::MoveRight(float AxisValue)
 {
 	FRotator ControlRot = GetControlRotation();
 	ControlRot.Pitch = 0.f;
@@ -98,26 +92,64 @@ void ADN_LaserBeamPawn::MoveRight(float Value)
 	// z = up (blue)
 
 	FVector RightVector = FRotationMatrix(ControlRot).GetScaledAxis(EAxis::Y);
-	AddMovementInput(RightVector, Value);
+	AddMovementInput(RightVector, AxisValue);
+}
+
+void ADN_LaserBeamPawn::LookUp(float AxisValue)
+{
+	AddControllerPitchInput(AxisValue);
+}
+
+void ADN_LaserBeamPawn::TurnRight(float AxisValue)
+{
+	AddControllerYawInput(AxisValue);
+}
+
+void ADN_LaserBeamPawn::LookUpRate(float AxisValue)
+{
+	AddControllerPitchInput(GetWorld()->DeltaTimeSeconds * BaseLookUpRate * AxisValue);
+}
+
+void ADN_LaserBeamPawn::TurnRightRate(float AxisValue)
+{
+	AddControllerYawInput(GetWorld()->DeltaTimeSeconds * BaseTurnRate * AxisValue);
 }
 
 void ADN_LaserBeamPawn::AddRayCast()
 {
 	FVector StartLineTrace = GetActorLocation();
 	FVector CameraForwardVector = CameraComponent->GetForwardVector();
-	float StartLineTraceMultiplier = 100.0f;
-	float EndLineTraceMultiplier = 1000.0f;
-	StartLineTrace += 100.0f*CameraForwardVector;
-	FVector EndLineTRace = StartLineTrace + EndLineTraceMultiplier*CameraForwardVector;
+
+	StartLineTrace += StartLineTraceMultiplier * CameraForwardVector;
+	FVector EndLineTRace = StartLineTrace + EndLineTraceMultiplier * CameraForwardVector;
 	FHitResult Hit;
 
 	if (GetWorld())
 	{
 		bool ActorHit = GetWorld()->LineTraceSingleByChannel(Hit,StartLineTrace,EndLineTRace,ECC_Pawn,FCollisionQueryParams(),FCollisionResponseParams());
-		DrawDebugLine(GetWorld(),StartLineTrace,EndLineTRace,FColor::Red,false,2.0f,0.0f,10.0f);
+		if (DrawTraceLine == true)
+		{
+			DrawDebugLine(GetWorld(), StartLineTrace, EndLineTRace, FColor::Red, false, 2.0f, 0.0f, 10.0f);
+		}
 		if (ActorHit && Hit.GetActor())
 		{
-			GEngine->AddOnScreenDebugMessage(-1,2.0f,FColor::Red,Hit.GetActor()->GetFName().ToString());
+			AActor* IdentifiedHitResult = Hit.GetActor();
+			FString IdentifiedHitResultName = IdentifiedHitResult->GetFName().ToString();
+			if (DisplayTraceLineMessage == true && IdentifiedHitResult != LastRayCastHitResult)
+			{ 
+				GEngine->AddOnScreenDebugMessage(-1,2.0f,FColor::Red,*IdentifiedHitResultName);
+			}
+			LastRayCastHitResult = IdentifiedHitResult;
+			
+			UE_LOG(LogTemp, Warning, TEXT("The identified object is %s"), *IdentifiedHitResultName);
+			RayCastHitResult = Hit.GetActor();
+
+			if ((LiveRayCast == true) && (RayCastHitResult != this))
+			{	
+				//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, *RayCastHitResult->GetFName().ToString());
+				SplineEndMesh = RayCastHitResult;
+				AttachEndMesh();
+			}
 		}
 	}
 }
@@ -126,6 +158,10 @@ void ADN_LaserBeamPawn::AddRayCast()
 void ADN_LaserBeamPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (LiveRayCast == true)
+	{
+		AddRayCast();
+	}
 }
 
 // Called to bind functionality to input
@@ -135,13 +171,16 @@ void ADN_LaserBeamPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ADN_LaserBeamPawn::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ADN_LaserBeamPawn::MoveRight);
-	
+	PlayerInputComponent->BindAxis("LookUpRate", this, &ADN_LaserBeamPawn::LookUpRate);
+	PlayerInputComponent->BindAxis("TurnRightRate", this, &ADN_LaserBeamPawn::TurnRightRate);
+
 	//Yaw: Horizontal Rotation (left-right), 
 	//Pitch: Vertical Rotation (up-down), 
 	//Roll: Swing Rotation (airplane) 
 	
-	PlayerInputComponent->BindAxis("TurnRight", this, &APawn::AddControllerYawInput);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &ADN_LaserBeamPawn::LookUp);
+	PlayerInputComponent->BindAxis("TurnRight", this, &ADN_LaserBeamPawn::TurnRight);
+
 
 	PlayerInputComponent->BindAction("Cast", IE_Pressed, this, &ADN_LaserBeamPawn::AddRayCast);
 
@@ -159,6 +198,7 @@ void ADN_LaserBeamPawn::AttachEndPoint()
 {	
 	AttachEndTo(SplineEndPoint);
 	EndPointMesh->SetWorldLocation(SplineEndPoint);
+	AddRayCast();
 }
 
 void ADN_LaserBeamPawn::AttachEndMesh()
@@ -172,7 +212,7 @@ void ADN_LaserBeamPawn::AttachEndMesh()
 
 void ADN_LaserBeamPawn::SetStartRadius()
 {
-	StartPointMesh->SetRelativeScale3D(StartRadius * FVector(1.0f,1.0f,1.0f));
+	StartPointMesh->SetRelativeScale3D(StartRadius * FVector(1.0f, 1.0f, 1.0f));
 }
 
 void ADN_LaserBeamPawn::SetEndRadius()
@@ -182,7 +222,9 @@ void ADN_LaserBeamPawn::SetEndRadius()
 
 void ADN_LaserBeamPawn::SetBeamRadius()
 {
+	FVector TempSplineEndPoint = EndPointMesh->GetRelativeLocation() + GetActorLocation();
 	SplineComponentBeam->SetRelativeScale3D(FVector(1.0f, BeamRadius, BeamRadius));
+	AttachEndTo(TempSplineEndPoint);
 }
 
 void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)
