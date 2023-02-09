@@ -154,6 +154,19 @@ void ADN_LaserBeamPawn::AddRayCast()
 	}
 }
 
+void ADN_LaserBeamPawn::AlignBeamPointer()
+{
+	if (LastServiceUsed == PackagedServices::AttachEndPointService)
+	{
+		AttachEndPoint();
+	}
+	else if (LastServiceUsed == PackagedServices::AttachEndMeshService)
+	{
+		AttachEndMesh();
+	}
+}
+
+
 
 void ADN_LaserBeamPawn::Tick(float DeltaTime)
 {
@@ -198,8 +211,9 @@ void ADN_LaserBeamPawn::AttachEndPoint()
 {	
 	AttachEndTo(SplineEndPoint);
 	EndPointMesh->SetWorldLocation(SplineEndPoint);
-	AddRayCast();
+	LastServiceUsed = PackagedServices::AttachEndPointService;
 }
+
 
 void ADN_LaserBeamPawn::AttachEndMesh()
 {
@@ -207,6 +221,8 @@ void ADN_LaserBeamPawn::AttachEndMesh()
 	{ 
 		AttachEndTo(SplineEndMesh->GetActorLocation());
 		EndPointMesh->SetWorldLocation(SplineEndMesh->GetActorLocation());
+		LastServiceUsed = PackagedServices::AttachEndMeshService;
+		SplineEndPoint = SplineEndMesh->GetActorLocation() + GetActorLocation();
 	}
 }
 
@@ -222,9 +238,12 @@ void ADN_LaserBeamPawn::SetEndRadius()
 
 void ADN_LaserBeamPawn::SetBeamRadius()
 {
+	SetActorRotation(FRotator(0.0f,0.0f,0.0f));
 	FVector TempSplineEndPoint = EndPointMesh->GetRelativeLocation() + GetActorLocation();
 	SplineComponentBeam->SetRelativeScale3D(FVector(1.0f, BeamRadius, BeamRadius));
 	AttachEndTo(TempSplineEndPoint);
+
+	//AlignBeamPointer();
 }
 
 void ADN_LaserBeamPawn::UpdateSplineBeam(const FVector& SplineInLocationTarget)

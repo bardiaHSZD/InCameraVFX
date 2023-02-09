@@ -20,6 +20,15 @@
 
 #include "DN_LaserBeamPawn.generated.h"
 
+UENUM(BlueprintType)
+enum PackagedServices
+{
+	NoService,
+	AttachEndMeshService,
+	AttachEndPointService,
+	RayCastEndPointService
+};
+
 UCLASS()
 class INCAMERAFX_API ADN_LaserBeamPawn : public APawn
 {
@@ -99,6 +108,8 @@ public:
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndPoint();
 	
+
+
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndMesh();
 	
@@ -110,6 +121,7 @@ public:
 	
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void SetBeamRadius();
+
 
 	void UpdateSplineBeam(const FVector& SplineEndPoint);
 	void UpdateSplineBeamMesh();
@@ -127,12 +139,13 @@ protected:
 	void LookUpRate(float AxisValue);
 	void TurnRightRate(float AxisValue);
 	void AddRayCast();
+	virtual void AlignBeamPointer();
 
 	float StartLineTraceMultiplier = 500.0f;
 	float EndLineTraceMultiplier = 1000.0f;
 	AActor* LastRayCastHitResult = nullptr;
-
-
+	PackagedServices LastServiceUsed = PackagedServices::AttachEndPointService;
+	float PreviousBeamRadius = 1.0;
 
 
 public:	
