@@ -26,7 +26,8 @@ enum PackagedServices
 	NoService,
 	AttachEndMeshService,
 	AttachEndPointService,
-	RayCastEndPointService
+	FreeFormEndPointService,
+	RayCastEndPointService,
 };
 
 UCLASS()
@@ -104,6 +105,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
 		void AttachEndTo(const FVector& position);
+	
+	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
+		void FreeFormEndTo(const FVector& position);
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndPoint();

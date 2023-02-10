@@ -151,6 +151,10 @@ void ADN_LaserBeamPawn::AddRayCast()
 				AttachEndMesh();
 			}
 		}
+		else
+		{
+			FreeFormEndTo(EndLineTRace);
+		}
 	}
 }
 
@@ -207,8 +211,17 @@ void ADN_LaserBeamPawn::AttachEndTo(const FVector& Position)
 	LogAfterAttach();
 }
 
+void ADN_LaserBeamPawn::FreeFormEndTo(const FVector& Position)
+{
+	EndPointMesh->SetVisibility(false);
+	AttachEndTo(Position);
+	EndPointMesh->SetWorldLocation(Position);
+	LastServiceUsed = PackagedServices::FreeFormEndPointService;
+}
+
 void ADN_LaserBeamPawn::AttachEndPoint()
 {	
+	EndPointMesh->SetVisibility(true);
 	AttachEndTo(SplineEndPoint);
 	EndPointMesh->SetWorldLocation(SplineEndPoint);
 	LastServiceUsed = PackagedServices::AttachEndPointService;
@@ -219,6 +232,7 @@ void ADN_LaserBeamPawn::AttachEndMesh()
 {
 	if (SplineEndMesh != nullptr)
 	{ 
+		EndPointMesh->SetVisibility(true);
 		AttachEndTo(SplineEndMesh->GetActorLocation());
 		EndPointMesh->SetWorldLocation(SplineEndMesh->GetActorLocation());
 		LastServiceUsed = PackagedServices::AttachEndMeshService;
