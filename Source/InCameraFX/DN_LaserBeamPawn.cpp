@@ -126,7 +126,7 @@ void ADN_LaserBeamPawn::AddRayCast()
 
 	if (GetWorld())
 	{
-		bool ActorHit = GetWorld()->LineTraceSingleByChannel(Hit,StartLineTrace,EndLineTRace,ECC_Pawn,FCollisionQueryParams(),FCollisionResponseParams());
+		bool ActorHit = GetWorld()->LineTraceSingleByChannel(Hit,StartLineTrace,EndLineTRace, ECC_Visibility,FCollisionQueryParams(),FCollisionResponseParams());
 		if (DrawTraceLine == true)
 		{
 			DrawDebugLine(GetWorld(), StartLineTrace, EndLineTRace, FColor::Red, false, 2.0f, 0.0f, 10.0f);
