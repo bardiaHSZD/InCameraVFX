@@ -35,6 +35,27 @@ class INCAMERAFX_API ADN_LaserBeamPawn : public APawn
 {
 	GENERATED_BODY()
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	void LogBeforeAttach() const;
+	void LogAfterAttach() const;
+	void LogReport(FString FState) const;
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void LookUp(float AxisValue);
+	void TurnRight(float AxisValue);
+	void LookUpRate(float AxisValue);
+	void TurnRightRate(float AxisValue);
+	virtual void AddRayCast();
+	void AlignBeamPointer();
+
+	float DefaultRayCastStart = 500.0f;
+	float DefaultRayCastEnd = 10000.0f;
+	AActor* LastRayCastHitResult = nullptr;
+	PackagedServices LastServiceUsed = PackagedServices::AttachEndPointService;
+	float PreviousBeamRadius = 1.0;
+
 public:
 	// Sets default values for this pawn's properties
 	ADN_LaserBeamPawn();
@@ -107,12 +128,13 @@ public:
 		void AttachEndTo(const FVector& position);
 	
 	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
+		void AttachHitResult(AActor* HitResult);
+	
+	UFUNCTION(BlueprintCallable, Category = "Remote Sensing")
 		void FreeFormEndTo(const FVector& position);
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndPoint();
-	
-
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
 		void AttachEndMesh();
@@ -130,29 +152,7 @@ public:
 	void UpdateSplineBeam(const FVector& SplineEndPoint);
 	void UpdateSplineBeamMesh();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	void LogBeforeAttach() const;
-	void LogAfterAttach() const;
-	void LogReport(FString FState) const;
-	void MoveForward(float AxisValue);
-	void MoveRight(float AxisValue);
-	void LookUp(float AxisValue);
-	void TurnRight(float AxisValue);
-	void LookUpRate(float AxisValue);
-	void TurnRightRate(float AxisValue);
-	void AddRayCast();
-	virtual void AlignBeamPointer();
 
-	float StartLineTraceMultiplier = 500.0f;
-	float EndLineTraceMultiplier = 1000.0f;
-	AActor* LastRayCastHitResult = nullptr;
-	PackagedServices LastServiceUsed = PackagedServices::AttachEndPointService;
-	float PreviousBeamRadius = 1.0;
-
-
-public:	
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

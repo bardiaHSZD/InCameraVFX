@@ -120,8 +120,8 @@ void ADN_LaserBeamPawn::AddRayCast()
 	FVector StartLineTrace = GetActorLocation();
 	FVector CameraForwardVector = CameraComponent->GetForwardVector();
 
-	StartLineTrace += StartLineTraceMultiplier * CameraForwardVector;
-	FVector EndLineTRace = StartLineTrace + EndLineTraceMultiplier * CameraForwardVector;
+	StartLineTrace += DefaultRayCastStart * CameraForwardVector;
+	FVector EndLineTRace = StartLineTrace + DefaultRayCastEnd * CameraForwardVector;
 	FHitResult Hit;
 
 	if (GetWorld())
@@ -134,26 +134,7 @@ void ADN_LaserBeamPawn::AddRayCast()
 		if (ActorHit && Hit.GetActor())
 		{
 			AActor* IdentifiedHitResult = Hit.GetActor();
-			FString IdentifiedHitResultName = IdentifiedHitResult->GetFName().ToString();
-			if (DisplayTraceLineMessage == true && IdentifiedHitResult != LastRayCastHitResult)
-			{ 
-				GEngine->AddOnScreenDebugMessage(-1,2.0f,FColor::Red,*IdentifiedHitResultName);
-			}
-			LastRayCastHitResult = IdentifiedHitResult;
-			
-			UE_LOG(LogTemp, Warning, TEXT("The identified object is %s"), *IdentifiedHitResultName);
-			RayCastHitResult = Hit.GetActor();
-
-			if ((LiveRayCast == true) && (RayCastHitResult != this))
-			{	
-				//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, *RayCastHitResult->GetFName().ToString());
-				SplineEndMesh = RayCastHitResult;
-				AttachEndMesh();
-			}
-		}
-		else
-		{
-			FreeFormEndTo(EndLineTRace);
+			AttachHitResult(IdentifiedHitResult);
 		}
 	}
 }
@@ -177,7 +158,7 @@ void ADN_LaserBeamPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (LiveRayCast == true)
 	{
-		AddRayCast();
+		this->AddRayCast();
 	}
 }
 
@@ -209,6 +190,28 @@ void ADN_LaserBeamPawn::AttachEndTo(const FVector& Position)
 	UpdateSplineBeam(Position);
 	UpdateSplineBeamMesh();
 	LogAfterAttach();
+}
+
+void ADN_LaserBeamPawn::AttachHitResult(AActor* IdentifiedHitResult)
+{
+
+	FString IdentifiedHitResultName = IdentifiedHitResult->GetFName().ToString();
+	if (DisplayTraceLineMessage == true && IdentifiedHitResult != LastRayCastHitResult)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, *IdentifiedHitResultName);
+	}
+	LastRayCastHitResult = IdentifiedHitResult;
+
+	UE_LOG(LogTemp, Warning, TEXT("The identified object is %s"), *IdentifiedHitResultName);
+	RayCastHitResult = IdentifiedHitResult;
+
+	if ((LiveRayCast == true) && (RayCastHitResult != this))
+	{
+		//GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, *RayCastHitResult->GetFName().ToString());
+		SplineEndMesh = RayCastHitResult;
+		AttachEndMesh();
+	}
+	
 }
 
 void ADN_LaserBeamPawn::FreeFormEndTo(const FVector& Position)

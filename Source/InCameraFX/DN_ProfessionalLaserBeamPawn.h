@@ -14,8 +14,18 @@ class INCAMERAFX_API ADN_ProfessionalLaserBeamPawn : public ADN_LaserBeamPawn
 {
 	GENERATED_BODY()
 
+protected:
+	void AddRayCast();
+
+public: 
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float RayCastStart = DefaultRayCastStart;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Remote Sensing")
+		float RayCastEnd = DefaultRayCastEnd;
 
 	UFUNCTION(CallInEditor, Category = "Remote Sensing")
-	void RayCastEndPoint();
+		virtual void RayCastEndPoint();
 	
 };
